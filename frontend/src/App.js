@@ -3,7 +3,7 @@ import { BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeScreens from './screens/HomeScreens';
-import ProductScreen from './screens/ExpedienteScreen';
+import ExpedienteScreen from './screens/ExpedienteScreen';
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
       <main className='py-3'>
           <Container>
             <Routes>
-              <Route path='/' element={<HomeScreens/>} exact/>
-              <Route path='/product/:id' element={<ProductScreen/>}/>
+              <Route path='/expedientes' element={<HomeScreens/>} exact/>
+              <Route path='/expedientes/:id' element={<ExpedienteScreen/>}/>
             </Routes>
           </Container>
       </main>
