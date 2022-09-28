@@ -22,6 +22,9 @@ from base import views as uploader_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('base.urls')),
-    path('', uploader_views.UploadView.as_view(), name='fileupload'),
+    # path('api/', include('base.urls')),
+    path('api/expedientes/', include('base.urls.expediente_urls')),
+    path('api/users/', include('base.urls.user_urls')),
+    path('api/comments/', include('base.urls.comment_urls')),
+    # path('', uploader_views.UploadView.as_view(), name='fileupload'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
