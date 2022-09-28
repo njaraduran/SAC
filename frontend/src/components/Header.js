@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { Container,Nav,Navbar, NavDropdown} from 'react-bootstrap'
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
 import { logout } from '../actions/userActions'
 
 function Header() {
@@ -9,25 +9,28 @@ function Header() {
   const {userInfo} = userLogin
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const logoutHandler = () =>{
     dispatch(logout())
+    navigate('/')
+    
   }
 
   return (
     <header>
       <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
         <Container>
-          <Navbar.Brand as ={Link} to="/">Sistema de Administración de Contratos</Navbar.Brand>
+          <Navbar.Brand as ={Link} to="/MainPage">Sistema de Administración de Contratos</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">  
               <Nav className="mr-auto">       
                 {userInfo && 
                   <Nav.Link as ={Link} to="/expedientes" ><i className='fas fa-archive'></i>Expedientes</Nav.Link>
-                }       
-                {userInfo && 
-                  <Nav.Link as = {Link} to ="/Register"><i className='fas fa-file-alt'></i>Usuarios</Nav.Link>
-                }      
+                }
+                {userInfo && userInfo.isAdmin && (
+                    <Nav.Link as = {Link} to ="/Register"><i className='fas fa-file-alt'></i>Usuarios</Nav.Link>
+                )}
                 {userInfo && 
                   <Nav.Link as = {Link} to ="/Message"><i className='far fa-comment-alt'></i>Mensajes</Nav.Link>   
                 }           
