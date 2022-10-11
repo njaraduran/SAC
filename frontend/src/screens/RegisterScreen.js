@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 
+
 import { register } from '../actions/userActions'
 
 
@@ -50,7 +51,7 @@ function RegisterScreen() {
 
     return (
         <div>
-        <Link to="/login" className='btn btn-dark my-3'>Volver</Link>
+        <Link to="/MainPage" className='btn btn-dark my-3'>Volver</Link>
         {message && <Message variant='danger'>{message}</Message>}
         <FormContainer>
             <h1>Registrar nuevo usuario</h1>

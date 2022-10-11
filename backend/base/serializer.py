@@ -11,13 +11,20 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', '_id', 'username', 'email', 'cargo', 'name', 'isAdmin']
+        fields = ['id', '_id', 'username', 'email',
+                  'first_name', 'last_name', 'name', 'isAdmin']
 
     def get__id(self, obj):
         return obj.id
 
     def get_isAdmin(self, obj):
         return obj.is_staff
+
+    def get_firstName(self, obj):
+        return obj.first_name
+
+    def get_lastName(self, obj):
+        return obj.last_name
 
     def get_name(self, obj):
         name = obj.first_name + ' ' + obj.last_name
@@ -33,7 +40,7 @@ class UserSerializerWithToken(UserSerializer):
     class Meta:
         model = User
         fields = ['id', '_id', 'username', 'email',
-                  'name', 'cargo', 'isAdmin', 'token']
+                  'name', 'isAdmin', 'token']
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)

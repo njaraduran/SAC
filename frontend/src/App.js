@@ -7,6 +7,13 @@ import ExpedienteScreen from './screens/ExpedienteScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import MainPage from './screens/MainPage';
+import UserListScreen from './screens/UserListScreen';
+import UserEditScreen from './screens/UserEditScreen';
+import ExpedienteListScreen from './screens/ExpedienteListScreen';
+import ExpedienteEditScreen from './screens/ExpedienteEditScreen';
+
+
+
 
 function App() {
   return (
@@ -15,11 +22,17 @@ function App() {
       <main className='py-3'>
           <Container>
             <Routes>
-              <Route path='/main' element={<MainPage/>} exact/>
+              <Route path='/MainPage' element={<MainPage/>} exact/>
               <Route path='/' element={<LoginScreen/>} exact/>
-              <Route path='/register/' element={<RegisterScreen/>} exact/>
+              <Route path='/admin/register/' element={<RegisterScreen/>} exact/>
               <Route path='/expedientes' element={<HomeScreens/>} exact/>
               <Route path='/expedientes/:id' element={<ExpedienteScreen/>}/>
+              <Route path='/admin/ListUsers/' element={<UserListScreen/>}/>
+              <Route path='/admin/:id/edit' element={<UserEditScreen/>}/>
+
+              
+              <Route path='/admin/expedientes/' element={<ExpedienteListScreen/>}/>
+              <Route path='/admin/expedientes/:id/edit' element={<ExpedienteEditScreen/>}/>
             </Routes>
           </Container>
       </main>

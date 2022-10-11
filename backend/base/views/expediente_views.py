@@ -27,3 +27,51 @@ def getExpediente(request, pk):
     expediente = Expediente.objects.get(_id=pk)
     serializer = ExpedienteSerializer(expediente, many=False)
     return Response(serializer.data)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAdminUser])
+def updateExpediente(request, pk):
+    data = request.data
+    expediente = Expediente.objects.get(_id=pk)
+    expediente.name = data['name']
+    expediente.asignTo = data['asignTo']
+    expediente.contratist = data['contratist']
+    expediente.stage = data['stage']
+    expediente.state = data['state']
+    expediente.dateStart = data['dateStart']
+    expediente.dateEnd = data['dateEnd']
+    expediente.description = data['description']
+
+    expediente.save()
+
+    serializer = ExpedienteSerializer(expediente, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
+def createExpediente(request):
+    user = request.user
+    expediente = Expediente.objects.create(
+        user=user,
+        name='Sample Name',
+        asignTo='',
+        contratist='',
+        stage='',
+        state='',
+        dateStart='2022-10-10',
+        dateEnd='2022-10-10',
+        description=''
+        # _id=''
+    )
+    serializer = ExpedienteSerializer(expediente, many=False)
+    return Response(serializer.data)
+
+
+@ api_view(['DELETE'])
+@ permission_classes([IsAdminUser])
+def deleteExpediente(request, pk):
+    expediente = Expediente.objects.get(_id=pk)
+    expediente.delete()
+    return Response('Expediente eliminado')

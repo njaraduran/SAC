@@ -21,7 +21,7 @@ function ExpedienteScreen({match}) {
 
   return (
     <div>
-      <Link to="/" className='btn btn-dark my-3'>Volver</Link>
+      <Link to="/MainPage" className='btn btn-dark my-3'>Volver</Link>
       {loading?
         <Loader />
         :error

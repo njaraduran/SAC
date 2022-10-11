@@ -28,20 +28,27 @@ function Header() {
                 {userInfo && 
                   <Nav.Link as ={Link} to="/expedientes" ><i className='fas fa-archive'></i>Expedientes</Nav.Link>
                 }
-                {userInfo && userInfo.isAdmin && (
-                    <Nav.Link as = {Link} to ="/Register"><i className='fas fa-file-alt'></i>Usuarios</Nav.Link>
-                )}
                 {userInfo && 
-                  <Nav.Link as = {Link} to ="/Message"><i className='far fa-comment-alt'></i>Mensajes</Nav.Link>   
+                  <Nav.Link as = {Link} to ="/Message"><i className='far fa-comment-alt'></i>Tareas</Nav.Link>   
                 }           
-              </Nav>          
+              </Nav>      
+              {userInfo &&  userInfo.isAdmin && (
+                <NavDropdown title={<span><i className='fas fa-users'></i>Administrador</span>} id = 'Users' className='text-white-50'>           
+                  <NavDropdown.Item as = {Link} to ="admin/Register">Registrar Usuarios</NavDropdown.Item>
+                  <NavDropdown.Item as = {Link} to ="admin/ListUsers">Usuarios</NavDropdown.Item>
+                  <NavDropdown.Item as = {Link} to ="admin/expedientes">Expedientes</NavDropdown.Item>
+                </NavDropdown>
+              )}
+
+
           </Navbar.Collapse>
           {userInfo && (
-            <NavDropdown title={userInfo.name} id = 'username'>
+            <NavDropdown title={userInfo.name} id = 'username' className='text-white-50'>
               <NavDropdown.Item as = {Link} to ="/profile">Perfil</NavDropdown.Item>
               <NavDropdown.Item onClick={logoutHandler}>Salir</NavDropdown.Item>
             </NavDropdown>
           )}
+
           
 
         </Container>
