@@ -28,7 +28,8 @@ class Entrada(models.Model):
         Expediente, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
-    dateUpload = models.DateTimeField(auto_now_add=True)
+    dateUpload = models.DateField(
+        blank=True, null=True, default=datetime.today().strftime("%Y-%m-%d"))
     comment = models.TextField(null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
@@ -42,7 +43,7 @@ class Document(models.Model):
     User = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     upload_file = models.FileField()
     name = models.CharField(max_length=200, null=True, blank=True)
-    dateUpload = models.DateTimeField(auto_now_add=True)
+    dateUpload = models.DateField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):

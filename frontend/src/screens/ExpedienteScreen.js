@@ -101,7 +101,7 @@ function ExpedienteScreen({match}) {
                     </ListGroup.Item>
                   </ListGroup>
                 </Col>
-                <Col md={3}>
+                <Col md={3} >
                   <Card>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
@@ -117,10 +117,19 @@ function ExpedienteScreen({match}) {
                 </Col>
 
               </Row>
-
+              
               <Row>
-                <Col md={6}>  
+                
+                <Col md={9}>  
                     
+                <hr
+                  style={{
+                    background: 'gray',
+                    color: 'gray',
+                    borderColor: 'gray',
+                    height: '3px',
+                  }}
+                />
                   <h4>Libro de Obras</h4>
                   {expediente.entradas.length === 0 && <Message variant='info'>Sin entradas</Message>}
 

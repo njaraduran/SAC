@@ -94,3 +94,22 @@ def createExpedienteEntrada(request, pk):
     expediente.save()
 
     return Response('Entrada agregada')
+
+
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+def createExpedienteDocument(request, pk):
+    user = request.user
+    expediente = Expediente.objects.get(_id=pk)
+    data = request.data
+
+    entrada = Document.objects.create(
+        user=user,
+        Expediente=expediente,
+        name=user.first_name,
+        comment=data['comment']
+    )
+
+    expediente.save()
+
+    return Response('Entrada agregada')
