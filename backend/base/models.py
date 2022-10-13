@@ -23,11 +23,12 @@ class Expediente(models.Model):
         return self.name
 
 
-class Comment(models.Model):
+class Entrada(models.Model):
     Expediente = models.ForeignKey(
         Expediente, on_delete=models.SET_NULL, null=True)
-    User = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
+    dateUpload = models.DateTimeField(auto_now_add=True)
     comment = models.TextField(null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 

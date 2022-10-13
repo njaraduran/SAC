@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 
 from ..expedientes import expedientes
-from ..models import Document, Expediente
+from ..models import Document, Expediente, Entrada
 from ..serializer import ExpedienteSerializer
 
 
@@ -69,9 +69,28 @@ def createExpediente(request):
     return Response(serializer.data)
 
 
-@ api_view(['DELETE'])
-@ permission_classes([IsAdminUser])
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
 def deleteExpediente(request, pk):
     expediente = Expediente.objects.get(_id=pk)
     expediente.delete()
     return Response('Expediente eliminado')
+
+
+@api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+def createExpedienteEntrada(request, pk):
+    user = request.user
+    expediente = Expediente.objects.get(_id=pk)
+    data = request.data
+
+    entrada = Entrada.objects.create(
+        user=user,
+        Expediente=expediente,
+        name=user.first_name,
+        comment=data['comment']
+    )
+
+    expediente.save()
+
+    return Response('Entrada agregada')

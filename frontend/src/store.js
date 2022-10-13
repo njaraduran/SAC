@@ -5,7 +5,8 @@ import { expedienteListReducers,
     expedienteDetailsReducers ,
     expedienteDeleteReducers,
     expedienteCreateReducers,
-    expedienteUpdateReducers
+    expedienteUpdateReducers,
+    expedienteEntradaCreateReducers
 } from './reducers/expedienteReducer'
 import { userLoginReducers,
     userRegisterReducer,
@@ -23,6 +24,8 @@ const reducer = combineReducers({
     expedienteDelete: expedienteDeleteReducers,
     expedienteCreate: expedienteCreateReducers,
     expedienteUpdate: expedienteUpdateReducers,
+
+    expedienteEntradaCreate: expedienteEntradaCreateReducers,
 
     userLogin:userLoginReducers,
     userRegister: userRegisterReducer,

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Expediente
+from .models import Expediente, Entrada
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -47,7 +47,20 @@ class UserSerializerWithToken(UserSerializer):
         return str(token.access_token)
 
 
+class EntradaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Entrada
+        fields = '__all__'
+
+
 class ExpedienteSerializer(serializers.ModelSerializer):
+    entradas = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Expediente
         fields = '__all__'
+
+    def get_entradas(self, obj):
+        entradas = obj.entrada_set.all()
+        serializer = EntradaSerializer(entradas, many=True)
+        return serializer.data
