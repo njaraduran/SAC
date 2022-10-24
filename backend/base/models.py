@@ -37,14 +37,19 @@ class Entrada(models.Model):
         return str(self._id)
 
 
+def upload_path(instance, filename):
+    return '/'.join(['file', str(instance.Expediente), filename])
+
+
 class Document(models.Model):
     Expediente = models.ForeignKey(
         Expediente, on_delete=models.SET_NULL, null=True)
-    User = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    upload_file = models.FileField()
+    #User = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    file = models.FileField(blank=True, null=True, upload_to=upload_path)
     name = models.CharField(max_length=200, null=True, blank=True)
-    dateUpload = models.DateField(auto_now_add=True)
+    dateUpload = models.DateField(
+        blank=True, null=True, default=datetime.today().strftime("%Y-%m-%d"))
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
-        return str(self.name)
+        return str(self._id)

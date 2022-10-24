@@ -24,6 +24,10 @@ import {
     EXPEDIENTES_CREATE_ENTRADA_SUCCESS,
     EXPEDIENTES_CREATE_ENTRADA_FAIL,
 
+    EXPEDIENTES_CREATE_DOCUMENT_REQUEST,
+    EXPEDIENTES_CREATE_DOCUMENT_SUCCESS,
+    EXPEDIENTES_CREATE_DOCUMENT_FAIL,
+
 
 } from '../constants/expedienteConstants';
 
@@ -214,6 +218,45 @@ export const createExpedienteEntrada = (entrada,expedienteId) => async (dispatch
     } catch (error) {
         dispatch({
             type:EXPEDIENTES_CREATE_ENTRADA_FAIL,
+            payload:error.response && error.response.data.detail
+            ?error.response.data.detail
+            :error.message,
+        })
+    }
+}
+
+export const createExpedienteDocument = (document,expedienteId) => async (dispatch,getState)=>{
+    try {
+        dispatch({
+            type:EXPEDIENTES_CREATE_DOCUMENT_REQUEST
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data}  = await axios.post(
+            `/api/expedientes/${expedienteId}/documents/`,
+            document,
+            config
+         )
+
+        dispatch({
+            type: EXPEDIENTES_CREATE_DOCUMENT_SUCCESS,
+            payload:data,
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type:EXPEDIENTES_CREATE_DOCUMENT_FAIL,
             payload:error.response && error.response.data.detail
             ?error.response.data.detail
             :error.message,

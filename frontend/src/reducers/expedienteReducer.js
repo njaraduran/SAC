@@ -24,7 +24,12 @@ import {
     EXPEDIENTES_CREATE_ENTRADA_REQUEST,
     EXPEDIENTES_CREATE_ENTRADA_SUCCESS,
     EXPEDIENTES_CREATE_ENTRADA_FAIL,
-    EXPEDIENTES_CREATE_ENTRADA_RESET
+    EXPEDIENTES_CREATE_ENTRADA_RESET,
+    
+    EXPEDIENTES_CREATE_DOCUMENT_REQUEST,
+    EXPEDIENTES_CREATE_DOCUMENT_SUCCESS,
+    EXPEDIENTES_CREATE_DOCUMENT_FAIL,
+    EXPEDIENTES_CREATE_DOCUMENT_RESET
  } from '../constants/expedienteConstants'
 
 export const expedienteListReducers = (state={expedientes:[]},action)=>{
@@ -110,6 +115,22 @@ export const expedienteEntradaCreateReducers = (state={},action)=>{
         case EXPEDIENTES_CREATE_ENTRADA_FAIL:
             return {loading:false,error:action.payload} 
         case EXPEDIENTES_CREATE_ENTRADA_RESET:
+                return {}
+        default:
+            return state
+
+        }
+}
+
+export const expedienteDocumentCreateReducers = (state={},action)=>{
+    switch(action.type){
+        case EXPEDIENTES_CREATE_DOCUMENT_REQUEST:
+            return {loading:true}
+        case EXPEDIENTES_CREATE_DOCUMENT_SUCCESS:
+            return {loading:false,success:true}    
+        case EXPEDIENTES_CREATE_DOCUMENT_FAIL:
+            return {loading:false,error:action.payload} 
+        case EXPEDIENTES_CREATE_DOCUMENT_RESET:
                 return {}
         default:
             return state

@@ -26,7 +26,7 @@ function App() {
               <Route path='/' element={<LoginScreen/>} exact/>
               <Route path='/admin/register/' element={<RegisterScreen/>} exact/>
               <Route path='/expedientes' element={<HomeScreens/>} exact/>
-              <Route path='/expedientes/:id' element={<ExpedienteScreen/>}/>
+              <Route path='/expedientes/:id/' element={<ExpedienteScreen/>}/>
               <Route path='/admin/ListUsers/' element={<UserListScreen/>}/>
               <Route path='/admin/:id/edit' element={<UserEditScreen/>}/>
 

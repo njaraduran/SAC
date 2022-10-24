@@ -1,3 +1,4 @@
+from telnetlib import DO
 from django.shortcuts import render
 
 from rest_framework.decorators import api_view, permission_classes
@@ -9,10 +10,10 @@ from django.contrib.auth.models import User
 
 from ..expedientes import expedientes
 from ..models import Document, Expediente, Entrada
-from ..serializer import ExpedienteSerializer
+from ..serializer import ExpedienteSerializer, DocumentSerializer
 
-
-from rest_framework import status
+from django.http import HttpResponse
+from rest_framework import status, viewsets
 
 
 @api_view(['GET'])
@@ -101,15 +102,49 @@ def createExpedienteEntrada(request, pk):
 def createExpedienteDocument(request, pk):
     user = request.user
     expediente = Expediente.objects.get(_id=pk)
-    data = request.data
 
-    entrada = Document.objects.create(
+    document = Document.objects.create(
         user=user,
         Expediente=expediente,
         name=user.first_name,
-        comment=data['comment']
+        file=request.FILES["file"]
     )
 
     expediente.save()
 
     return Response('Entrada agregada')
+
+
+# @api_view(['POST'])
+# def uploadFile(request):
+
+#     # doc = Document.objects.all()
+#     # serializer = DocumentSerializer(doc, many=False)
+#     # return Response(serializer.data)
+
+#     data = request.data
+#     expediente = data['expediente_id']
+#     document = Document.objects.create(
+#         # User=user,
+#         Expediente=expediente,
+#         file=request.FILES.get('file'),
+#         # name=user.first_name
+#     )
+
+#     serializer = DocumentSerializer(Document, many=False)
+#     return Response(serializer.data)
+
+
+class uploadFile(viewsets.ModelViewSet):
+    queryset = Document.objects.all()
+    serializer_class = DocumentSerializer
+
+    def post(self, request, *args, **kwargs):
+        Expediente = request.data['Expediente']
+        file = request.data['file']
+        User = request.data['User']
+        name = request.data['name']
+        # dateUpload = request.data['dateUpload']
+        Document.objects.create(Expediente=Expediente,
+                                file=file, name=name)
+        return HttpResponse({'message': 'Expediente created'}, status=200)
