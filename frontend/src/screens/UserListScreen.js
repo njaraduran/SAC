@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table,Button} from 'react-bootstrap'
+import { Table,Button,Row,Col} from 'react-bootstrap'
 import { useDispatch,useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import {listUsers,deleteUser} from '../actions/userActions'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 
 
 function UserListScreen() {
@@ -42,7 +42,17 @@ function UserListScreen() {
 
   return (
     <div>
-      <h1>Usuarios</h1>
+
+<Row className='align-items-center'>
+            <Col>
+                <h1>Usuarios</h1>
+            </Col>
+            <Col align="end">
+                <Button className='my-3' as={Link} to="/admin/Register">
+                    <i className='fas fa-plus'></i>Crear Usuario
+                </Button>
+            </Col>
+        </Row>
       {loading
         ? (<Loader />)
         : error
@@ -54,6 +64,7 @@ function UserListScreen() {
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Correo</th>
+                    <th>Cargo</th>
                     <th>Administrador</th>
                     <th></th>
                   </tr>
@@ -65,6 +76,7 @@ function UserListScreen() {
                       <td>{user._id}</td>
                       <td>{user.name}</td>
                       <td>{user.email}</td>
+                      <td>{user.cargo}</td>
                       <td>{user.isAdmin ? (
                         <i className='fas fa-check' style={{color:'green'}}></i>
                       ) : (

@@ -35,7 +35,7 @@ function LoginScreen() {
   const submitHandler = (e)=>{
     e.preventDefault()
       dispatch(login(email,password))
-      // navigate("/MainPage")
+      navigate("/MainPage")
     
   }
 
@@ -56,7 +56,7 @@ function LoginScreen() {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group>
+          <Form.Group className='mb-3'>
             <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type='password'

@@ -16,6 +16,7 @@ function UserEditScreen({match}) {
     const [first_name,setFirst_name] = useState('')
     const [last_name,setLast_name] = useState('')
     const [email,setEmail] = useState('')
+    const [cargo,setCargo] = useState('')
     const [isAdmin,setIsAdmin] = useState(false)
 
     const dispatch = useDispatch()
@@ -45,6 +46,7 @@ function UserEditScreen({match}) {
                 setFirst_name(user.first_name)
                 setLast_name(user.last_name)
                 setEmail(user.email)
+                setCargo(user.cargo)
                 setIsAdmin(user.isAdmin)
             }
         }
@@ -54,7 +56,7 @@ function UserEditScreen({match}) {
     
     const submitHandler = (e)=>{
         e.preventDefault()
-        dispatch(updateUser({_id:user._id,email,first_name,last_name,isAdmin}))
+        dispatch(updateUser({_id:user._id,email,first_name,last_name,cargo,isAdmin}))
         
     }
 
@@ -102,7 +104,7 @@ function UserEditScreen({match}) {
                         </Form.Control>
                     </Form.Group>
 
-                    {/* <Form.Group>
+                    <Form.Group>
                     <Form.Label>Cargo</Form.Label>
                         <Form.Control
                 
@@ -112,7 +114,7 @@ function UserEditScreen({match}) {
                         onChange={(e)=>setCargo(e.target.value)}
                         >
                         </Form.Control>
-                    </Form.Group> */}
+                    </Form.Group>
 
                     <Form.Group controlId='isadmin'>
                     <Form.Label></Form.Label>

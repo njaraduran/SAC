@@ -1,8 +1,11 @@
+from datetime import datetime
 from pyexpat import model
 from unicodedata import name
 from django.db import models
-from django.contrib.auth.models import User
-from datetime import datetime
+# from django.contrib.auth.models import User
+from users.models import User
+# from backend.users import User
+
 
 # Create your models here.
 

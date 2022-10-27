@@ -10,7 +10,8 @@ from ..expedientes import expedientes
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 
 from ..models import Document, Expediente
 from ..serializer import ExpedienteSerializer, UserSerializer, UserSerializerWithToken
@@ -40,12 +41,14 @@ class MyTokenObtainPairView(TokenObtainPairView):
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
-
+    print(data)
     try:
         user = User.objects.create(
             first_name=data['first_name'],
+            last_name=data['last_name'],
             username=data['email'],
             email=data['email'],
+            cargo=data['cargo'],
             password=make_password(data['password'])
         )
 
@@ -91,6 +94,7 @@ def updateUser(request, pk):
     user.last_name = data['last_name']
     user.username = data['email']
     user.email = data['email']
+    user.cargo = data['cargo']
     user.is_staff = data['isAdmin']
 
     user.save()

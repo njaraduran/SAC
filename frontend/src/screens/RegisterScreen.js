@@ -13,6 +13,7 @@ import { register } from '../actions/userActions'
 
 function RegisterScreen() {
     const [first_name,setFirst_name] = useState('')
+    const [last_name,setLast_name] = useState('')
     const [email,setEmail] = useState('')
     const [cargo,setCargo] = useState('')
     const [password,setPassword] = useState('')
@@ -42,22 +43,26 @@ function RegisterScreen() {
         if (password !== confirmPassword){
             setMessage('Contraseñas no coinciden')
         }else{
-            dispatch(register(first_name,email,password))
-            navigate('/MainPage')
+            dispatch(register(first_name,last_name,email,cargo,password))
+            navigate('/admin/Register/')   
         }
         
         
     }
 
     return (
+
+
         <div>
-        <Link to="/MainPage" className='btn btn-dark my-3'>Volver</Link>
+
+
+        <Link to="/admin/ListUsers" className='btn btn-dark my-3'>Volver</Link>
         {message && <Message variant='danger'>{message}</Message>}
         <FormContainer>
             <h1>Registrar nuevo usuario</h1>
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler} >
                 <Form.Group>
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control
@@ -69,10 +74,22 @@ function RegisterScreen() {
                         >
                     </Form.Control>
                 </Form.Group>
+                <Form.Group>
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control
+                        required
+                        type='apellido'
+                        placeholder='Ingresar Apellido'
+                        value = {last_name}
+                        onChange={(e)=>setLast_name(e.target.value)}
+                        >
+                    </Form.Control>
+                </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Correo Electrónico</Form.Label>
+                  <Form.Label >Correo Electrónico</Form.Label>
                     <Form.Control
+                    autoComplete="new-password"
                     required
                     type='email'
                     placeholder='Ingresar correo'
@@ -85,12 +102,17 @@ function RegisterScreen() {
                 <Form.Group>
                 <Form.Label>Cargo</Form.Label>
                     <Form.Control
-            
+                    as = 'select'
                     type='cargo'
                     placeholder='Cargo del usuario'
                     value = {cargo}
                     onChange={(e)=>setCargo(e.target.value)}
                     >
+                        <option value="">---Ingresar cargo---</option>
+                        <option value="Director">Director</option>
+                        <option value="Inspector Técnico">Inspector Técnico</option>
+                        <option value="Contratista">Contratista</option>
+                        <option value="Secretaria">Secretaria</option>
                     </Form.Control>
                 </Form.Group>
 

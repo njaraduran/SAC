@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Document, Expediente, Entrada
 
@@ -12,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', '_id', 'username', 'email',
-                  'first_name', 'last_name', 'name', 'isAdmin']
+                  'first_name', 'last_name', 'name', 'isAdmin', 'cargo']
 
     def get__id(self, obj):
         return obj.id
@@ -25,6 +26,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_lastName(self, obj):
         return obj.last_name
+
+    def get_cargo(self, obj):
+        return obj.cargo
 
     def get_name(self, obj):
         name = obj.first_name + ' ' + obj.last_name
@@ -40,7 +44,7 @@ class UserSerializerWithToken(UserSerializer):
     class Meta:
         model = User
         fields = ['id', '_id', 'username', 'email',
-                  'name', 'isAdmin', 'token']
+                  'name', 'cargo', 'isAdmin', 'token']
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)

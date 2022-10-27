@@ -67,7 +67,7 @@ import {
     
  }
 
- export const register = (first_name,email,password)=>async(dispatch)=>{
+ export const register = (first_name,last_name,email,cargo,password)=>async(dispatch)=>{
     try {
         dispatch({type:USER_REGISTER_REQUEST})
 
@@ -79,7 +79,7 @@ import {
 
         const {data}  = await axios.post(
             '/api/users/register/',
-            {'first_name':first_name,'email':email,'password':password},
+            {'first_name':first_name,'last_name':last_name,'email':email,'cargo':cargo,'password':password},
             config
             )
 

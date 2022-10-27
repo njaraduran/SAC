@@ -34,7 +34,6 @@ function Header() {
               </Nav>      
               {userInfo &&  userInfo.isAdmin && (
                 <NavDropdown title={<span><i className='fas fa-users'></i>Administrador</span>} id = 'Users' className='text-white-50'>           
-                  <NavDropdown.Item as = {Link} to ="admin/Register">Registrar Usuarios</NavDropdown.Item>
                   <NavDropdown.Item as = {Link} to ="admin/ListUsers">Usuarios</NavDropdown.Item>
                   <NavDropdown.Item as = {Link} to ="admin/expedientes">Expedientes</NavDropdown.Item>
                 </NavDropdown>
@@ -42,17 +41,23 @@ function Header() {
 
 
           </Navbar.Collapse>
+          
           {userInfo && (
+            
             <NavDropdown title={userInfo.name} id = 'username' className='text-white-50'>
               <NavDropdown.Item as = {Link} to ="/profile">Perfil</NavDropdown.Item>
               <NavDropdown.Item onClick={logoutHandler}>Salir</NavDropdown.Item>
             </NavDropdown>
+            
+            
           )}
+          
 
           
 
         </Container>
       </Navbar>
+      
     </header>
   )
 }
