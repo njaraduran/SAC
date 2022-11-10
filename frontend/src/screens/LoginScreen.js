@@ -26,8 +26,15 @@ function LoginScreen() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let redir2 = ''
     if (userInfo){
-      history(redirect)
+      redir2 = '/mainPage'
+    }else{
+      redir2 = '/'
+    }
+    
+    if (userInfo){
+      history(redir2)
     }
   }, [history,userInfo,redirect])
   
@@ -35,9 +42,7 @@ function LoginScreen() {
   const submitHandler = (e)=>{
     e.preventDefault()
       dispatch(login(email,password))
-      navigate("/MainPage")
-    
-  }
+    }
 
   return (
     <FormContainer>

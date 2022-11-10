@@ -24,6 +24,7 @@ function Header() {
           <Navbar.Brand as ={Link} to="/MainPage">Sistema de Administración de Contratos</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">  
+              
               <Nav className="mr-auto">       
                 {userInfo && 
                   <Nav.Link as ={Link} to="/expedientes" ><i className='fas fa-archive'></i>Expedientes</Nav.Link>
@@ -38,8 +39,6 @@ function Header() {
                   <NavDropdown.Item as = {Link} to ="admin/expedientes">Expedientes</NavDropdown.Item>
                 </NavDropdown>
               )}
-
-
           </Navbar.Collapse>
           
           {userInfo && (

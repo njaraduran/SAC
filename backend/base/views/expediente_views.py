@@ -18,7 +18,10 @@ from rest_framework import status, viewsets
 
 @api_view(['GET'])
 def getExpedientes(request):
-    expedientes = Expediente.objects.all()
+    query = request.query_params.get('keyword')
+    if query == None:
+        query = ''
+    expedientes = Expediente.objects.filter(name__icontains=query)
     serializer = ExpedienteSerializer(expedientes, many=True)
     return Response(serializer.data)
 

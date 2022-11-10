@@ -31,11 +31,11 @@ import {
 
 } from '../constants/expedienteConstants';
 
-export const listExpedientes = () => async (dispatch)=>{
+export const listExpedientes = (keyword='') => async (dispatch)=>{
     try {
         dispatch({type:EXPEDIENTES_LIST_REQUEST})
 
-        const {data}  = await axios.get('/api/expedientes/')
+        const {data}  = await axios.get(`/api/expedientes/${keyword}`)
 
         dispatch({
             type: EXPEDIENTES_LIST_SUCCESS,
