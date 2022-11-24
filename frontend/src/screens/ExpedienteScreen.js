@@ -161,10 +161,10 @@ const newFile = async() => {
         
                 <ListGroup variant="flush">
                     <ListGroup.Item>
-                      <h3>{expediente.name}</h3>
+                      <h3>Expediente:{expediente.name}</h3>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      Descripción: ${expediente.description}
+                      Descripción: {expediente.description}
                     </ListGroup.Item>
                   </ListGroup>
                 </Col>
@@ -190,10 +190,19 @@ const newFile = async() => {
                       Estado: {expediente.state}
                     </ListGroup.Item>
                     <ListGroup.Item>
+                      Monto Inicial: ${expediente.montoInicial}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Monto Actual: ${expediente.montoActualizado}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
                       Fecha de Inicio: {expediente.dateStart}
                     </ListGroup.Item>
                     <ListGroup.Item>
                       Fecha de Termino: {expediente.dateEnd}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Porcentaje de avance: %{expediente.pAvanceFisico}
                     </ListGroup.Item>
                   </ListGroup>
                 </Col>

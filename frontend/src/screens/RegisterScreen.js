@@ -23,18 +23,13 @@ function RegisterScreen() {
     const dispatch = useDispatch()
     
     const location = useLocation()
-    const history = useNavigate()
     
     const redirect = location.search ? location.search.split('=')[1]:'/'
     
     const userRegister = useSelector(state => state.userRegister)
     const {error,loading,userInfo} = userRegister
     
-    // useEffect(() => {
-    //     if (userInfo){
-    //     history(redirect)
-    //     }
-    // }, [history,userInfo,redirect])
+
     const navigate = useNavigate();
     
     const submitHandler = (e)=>{

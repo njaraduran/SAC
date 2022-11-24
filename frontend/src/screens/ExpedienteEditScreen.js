@@ -11,7 +11,6 @@ import {EXPEDIENTES_UPDATE_RESET} from '../constants/expedienteConstants'
 function ExpedienteEditScreen({match}) {
 
     const expedienteId = useParams()
-
     const [name,setName] = useState('')
     const [asignTo,setAsignTo] = useState('')
     const [contratist,setContratis] = useState('')
@@ -20,6 +19,15 @@ function ExpedienteEditScreen({match}) {
     const [dateStart,setDateStart] = useState('')
     const [dateEnd,setDateEnd] = useState('')
     const [description,setDescription] = useState('')
+    const [direccionContratista,setDireccionContratista] = useState('')
+    const [direccion,setDireccion] = useState('')
+    // const [fechaAdjudicacion,setFechaAdjudicacion] = useState('')
+    // const [fechaContratacion,setFechaContratacion] = useState('')
+    const [montoInicial,setMontoInicial] = useState('')
+    const [montoActualizado,setMontoActualizado] = useState('')
+    const [pAvanceFisico,setPAvanceFisico] = useState('')
+    const [pAvanceFinanciero,setPAvanceFinanciero] = useState('')
+
 
     const dispatch = useDispatch()    
     const history = useNavigate()
@@ -48,6 +56,17 @@ function ExpedienteEditScreen({match}) {
                 setDateStart(expediente.dateStart)
                 setDateEnd(expediente.dateEnd)
                 setDescription(expediente.description)
+                setDireccionContratista(expediente.direccionContratista)
+                setDireccion(expediente.direccion)
+                // setFechaAdjudicacion(expediente.fechaAdjudicacion)
+                // setFechaContratacion(expediente.fechaContratacion)
+                setMontoInicial(expediente.montoInicial)
+                setMontoActualizado(expediente.montoActualizado)
+                setPAvanceFisico(expediente.pAvanceFisico)
+                setPAvanceFinanciero(expediente.pAvanceFinanciero)
+
+
+
             }           
         }        
     },[dispatch,expediente,expedienteId.id,history])
@@ -64,7 +83,15 @@ function ExpedienteEditScreen({match}) {
             state,
             dateStart,
             dateEnd,
-            description
+            description,
+            direccionContratista,
+            direccion,
+            // fechaAdjudicacion,
+            // fechaContratacion,
+            montoInicial,
+            montoActualizado,
+            pAvanceFisico,
+            pAvanceFinanciero
         }))
                 
     }
@@ -113,6 +140,17 @@ function ExpedienteEditScreen({match}) {
                         </Form.Control>
                     </Form.Group>
 
+                    <Form.Group controlId='direccionContratista'>
+                        <Form.Label>Direccion contratista</Form.Label>
+                        <Form.Control
+                            type='name'
+                            placeholder='Dirección del contratista'
+                            value = {direccionContratista}
+                            onChange={(e)=>setDireccionContratista(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+
                     <Form.Group controlId='stage'>
                         <Form.Label>Etapa</Form.Label>
                         <Form.Control
@@ -154,6 +192,103 @@ function ExpedienteEditScreen({match}) {
                             >
                         </Form.Control>
                     </Form.Group>
+
+
+{/* 
+                    <Form.Group controlId='fechaAdjudicacion'>
+                        <Form.Label>Fecha de adjudicación</Form.Label>
+                        <Form.Control
+                            type='date'
+                            value = {fechaAdjudicacion}
+                            onChange={(e)=>setFechaAdjudicacion(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId='fechaContratacion'>
+                        <Form.Label>Fecha de Contratación</Form.Label>
+                        <Form.Control
+                            type='date'
+                            value = {fechaContratacion}
+                            onChange={(e)=>setFechaContratacion(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group> */}
+
+
+                    <Form.Group controlId='direccion'>
+                        <Form.Label>Dirección de la obra</Form.Label>
+                        <Form.Control
+                            type='name'
+                            placeholder='Dirección'
+                            value = {direccion}
+                            onChange={(e)=>setDireccion(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+                    
+
+
+                    <Form.Group controlId='montoInicial'>
+                        <Form.Label>Monto inicialde la obra</Form.Label>
+                        <Form.Control
+                            type='input'
+                            placeholder='Monto Inicial de la Obra'
+                            value = {montoInicial}
+                            onChange={(e)=>setMontoInicial(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+
+
+                    <Form.Group controlId='montoActualizado'>
+                        <Form.Label>Monto actual de la obra</Form.Label>
+                        <Form.Control
+                            type='name'
+                            placeholder='montoActualizado'
+                            value = {montoActualizado}
+                            onChange={(e)=>setMontoActualizado(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+
+
+                    <Form.Group controlId='pAvanceFisico'>
+                        <Form.Label>Porcentaje de avance físico de la obra</Form.Label>
+                        <Form.Control
+                            type='name'
+                            placeholder='pAvanceFisico'
+                            value = {pAvanceFisico}
+                            onChange={(e)=>setPAvanceFisico(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+
+
+                    <Form.Group controlId='pAvanceFinanciero'>
+                        <Form.Label>Porcentaje de avance financiero</Form.Label>
+                        <Form.Control
+                            type='name'
+                            placeholder='pAvanceFinanciero'
+                            value = {pAvanceFinanciero}
+                            onChange={(e)=>setPAvanceFinanciero(e.target.value)}
+                            >
+                        </Form.Control>
+                    </Form.Group>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     <Form.Group controlId='description'>
                         <Form.Label>Descripción</Form.Label>

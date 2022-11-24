@@ -36,6 +36,7 @@ def getExpediente(request, pk):
 @api_view(['PUT'])
 @permission_classes([IsAdminUser])
 def updateExpediente(request, pk):
+
     data = request.data
     expediente = Expediente.objects.get(_id=pk)
     expediente.name = data['name']
@@ -46,7 +47,14 @@ def updateExpediente(request, pk):
     expediente.dateStart = data['dateStart']
     expediente.dateEnd = data['dateEnd']
     expediente.description = data['description']
-
+    expediente.direccionContratista = data['direccionContratista']
+    expediente.direccion = data['direccion']
+    # expediente.fechaAdjudicacion = data['fechaAdjudicacion']
+    # expediente.fechaContratacion = data['fechaContratacion']
+    expediente.montoInicial = data['montoInicial']
+    expediente.montoActualizado = data['montoActualizado']
+    expediente.pAvanceFisico = data['pAvanceFisico']
+    expediente.pAvanceFinanciero = data['pAvanceFinanciero']
     expediente.save()
 
     serializer = ExpedienteSerializer(expediente, many=False)
@@ -66,7 +74,13 @@ def createExpediente(request):
         state='',
         dateStart='2022-10-10',
         dateEnd='2022-10-10',
-        description=''
+        description='Sin descripcion',
+        direccionContratista='',
+        direccion='',
+        montoInicial='',
+        montoActualizado='',
+        pAvanceFisico='',
+        pAvanceFinanciero=''
         # _id=''
     )
     serializer = ExpedienteSerializer(expediente, many=False)

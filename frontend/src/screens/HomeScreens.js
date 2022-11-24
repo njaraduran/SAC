@@ -16,6 +16,7 @@ function HomeScreens({history}) {
   const expedienteList = useSelector(state=>state.expedienteList)
   const {error,loading,expedientes} =  expedienteList
 
+
   const location = useLocation()
 
 
@@ -23,7 +24,6 @@ function HomeScreens({history}) {
   useEffect(()=>{
     dispatch(listExpedientes(keyword))    
   },[dispatch,keyword])
-
 
   
   return (
