@@ -100,7 +100,7 @@ function ExpedienteEditScreen({match}) {
         <div>
         <Link to="/admin/expedientes/" className='btn btn-dark my-3'>Volver</Link>
         <FormContainer>
-            <h1>Editar Expediente</h1>
+            <h1>Crear/Editar Expediente</h1>
             {loadingUpdate && <Loader/>}
             {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
