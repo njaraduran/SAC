@@ -15,10 +15,24 @@ class Expediente(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     asignTo = models.CharField(max_length=200, null=True, blank=True)
     contratist = models.CharField(max_length=200, null=True, blank=True)
+    direccionContratista = models.CharField(
+        max_length=200, null=True, blank=True)
+    direccion = models.CharField(max_length=200, null=True, blank=True)
+    # clasificacion = models.CharField(max_length=200, null=True, blank=True)
+    # fechaAdjudicacion = models.DateField(
+    #     default=datetime.now().strftime("%Y-%m-%d"))
+    # fechaContratacion = models.DateField(
+    #     default=datetime.now().strftime("%Y-%m-%d"))
+    # tipoFinanciamiento = models.CharField(
+    # max_length=200, null=True, blank=True)
+    montoInicial = models.CharField(max_length=200, null=True, blank=True)
+    montoActualizado = models.CharField(max_length=200, null=True, blank=True)
+    pAvanceFisico = models.CharField(max_length=200, null=True, blank=True)
+    pAvanceFinanciero = models.CharField(max_length=200, null=True, blank=True)
     stage = models.CharField(max_length=200, null=True, blank=True)
     state = models.CharField(max_length=200, null=True, blank=True)
-    dateStart = models.DateField(default=datetime.today().strftime('%d-%m-%Y'))
-    dateEnd = models.DateField(default=datetime.today().strftime('%d-%m-%Y'))
+    dateStart = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
+    dateEnd = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
     description = models.TextField(null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 

@@ -11,6 +11,7 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import ExpedienteListScreen from './screens/ExpedienteListScreen';
 import ExpedienteEditScreen from './screens/ExpedienteEditScreen';
+import ExpedienteReporteScreen from './screens/ExpedienteReporteScreen';
 
 
 
@@ -27,6 +28,7 @@ function App() {
               <Route path='/admin/register/' element={<RegisterScreen/>} exact/>
               <Route path='/expedientes' element={<HomeScreens/>} exact/>
               <Route path='/expedientes/:id/' element={<ExpedienteScreen/>}/>
+              <Route path='/expedientes/reporte/' element={<ExpedienteReporteScreen/>}/>
               <Route path='/admin/ListUsers/' element={<UserListScreen/>}/>
               <Route path='/admin/:id/edit' element={<UserEditScreen/>}/>
 
